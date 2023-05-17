@@ -2,6 +2,9 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 
+// React Native에서는 px를 사용하면 안된다. 숫자만 사용.
+// border도 사용하면 안된다. 이렇게 써야 함. -> borderWidth: 10, borderColor : #eee
+
 export default function App() {
   let [btnTrigger, setBtnTrigger] = useState(0);
 
