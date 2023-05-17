@@ -7,9 +7,12 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      {/* prettier-ignore */}
       <TouchableOpacity onPress={() => setBtnTrigger(btnTrigger === 0 ? 1 : 0)}>
-        {btnTrigger == 0 ? <InvincibleBtn onOff={"onOff"} onOffText={"onOffText"} text={"ON"} /> : <InvincibleBtn  onOff={"onOff2"} onOffText={"onOffText2"} text={"OFF"} />}
+        {btnTrigger === 0 ? (
+          <InvincibleBtn onOff={"onOff"} onOffText={"onOffText"} text={"ON"} />
+        ) : (
+          <InvincibleBtn onOff={"onOff2"} onOffText={"onOffText2"} text={"OFF"} />
+        )}
       </TouchableOpacity>
       <Text style={styles.timer}>00:00</Text>
       <PublicBtn text={"이용내역"} />
@@ -18,7 +21,7 @@ export default function App() {
   );
 }
 
-const InvincibleBtn = props => {
+const InvincibleBtn = (props) => {
   return (
     <View style={styles[props.onOff]}>
       <Text style={styles[props.onOffText]}>{props.text}</Text>
@@ -26,7 +29,7 @@ const InvincibleBtn = props => {
   );
 };
 
-const PublicBtn = props => {
+const PublicBtn = (props) => {
   return (
     <View style={styles.publicBtn}>
       <Text style={styles.publicBtnText}>{props.text}</Text>
@@ -42,41 +45,42 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   onOff: {
-    width: "300px",
-    height: "300px",
+    width: 300,
+    height: 300,
     backgroundColor: "#ffffff",
     justifyContent: "center",
-    textAlign: "center",
-    borderRadius: "50%",
-    border: "solid 10px #7D74E4",
+    borderRadius: 500,
+    borderWidth: 10,
+    borderColor: "#7D74E4",
   },
   onOff2: {
-    width: "300px",
-    height: "300px",
+    width: 300,
+    height: 300,
     backgroundColor: "#7D74E4",
     justifyContent: "center",
-    textAlign: "center",
-    borderRadius: "50%",
+    borderRadius: 500,
   },
   onOffText: {
+    textAlign: "center",
     color: "#7D74E4",
-    fontSize: "50px",
+    fontSize: 50,
   },
   onOffText2: {
+    textAlign: "center",
     color: "white",
-    fontSize: "50px",
+    fontSize: 50,
   },
   timer: {
-    marginTop: "50px",
-    fontSize: "50px",
-    fontWeight: "600",
-    marginBottom: "40px",
+    marginTop: 50,
+    fontSize: 50,
+    fontWeight: 600,
+    marginBottom: 40,
   },
   publicBtn: {
     textAlign: "center",
-    marginBottom: "20px",
-    width: "150px",
-    borderRadius: "10px",
+    marginBottom: 20,
+    width: 150,
+    borderRadius: 10,
     backgroundColor: "#7D74E4",
     paddingTop: 5,
     paddingRight: 15,
@@ -85,7 +89,7 @@ const styles = StyleSheet.create({
   },
   publicBtnText: {
     color: "white",
-    fontSize: "30px",
-    fontWeight: "600",
+    fontSize: 30,
+    fontWeight: 600,
   },
 });
