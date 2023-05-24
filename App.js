@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
+import axios from "axios";
 
 // React Native에서는 px를 사용하면 안된다. 숫자만 사용.
 // border도 사용하면 안된다. 이렇게 써야 함. -> borderWidth: 10, borderColor : #eee
@@ -10,7 +11,12 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => setBtnTrigger(btnTrigger === 0 ? 1 : 0)}>
+      <TouchableOpacity
+        onPress={() => {
+          setBtnTrigger(btnTrigger === 0 ? 1 : 0);
+          apiServer();
+        }}
+      >
         {btnTrigger === 0 ? (
           <InvincibleBtn onOff={"onOff"} onOffText={"onOffText"} text={"ON"} />
         ) : (
@@ -38,6 +44,19 @@ const PublicBtn = (props) => {
       <Text style={styles.publicBtnText}>{props.text}</Text>
     </View>
   );
+};
+
+const apiServer = () => {
+  axios
+    .get("http://localhost:3000/api/data")
+    .then((response) => {
+      // 응답 처리
+      console.log(response.data);
+    })
+    .catch((error) => {
+      // 오류 처리
+      console.error(error);
+    });
 };
 
 const styles = StyleSheet.create({
